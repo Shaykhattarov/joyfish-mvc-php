@@ -153,13 +153,16 @@ $(function() {
 
 }); // end document ready
 
-
 // Сортировка по бренду
 $('#checkbox-filter').change(function() {
     values = $('input:checked', this).get().map(n => n.dataset.filter);
     //console.log(values);
     $('.catalog-column div.item').each((i, n) => $(n).toggle(values.includes(n.dataset.category)));
 }).change();
+
+
+
+
 
 // Сортировка по цене
 
@@ -237,3 +240,31 @@ inputpriceto.oninput = function() {
         }
     }
 };
+
+var btnplus = document.getElementById("btn-plus");
+var btnminus = document.getElementById("btn-minus");
+
+
+function add_product() {
+    const inputcounter = document.getElementById("count-product");
+    const oldvalue = parseInt(inputcounter.value, 10);
+    let newvalue = oldvalue + 1;
+    inputcounter.value = newvalue;
+    if (newvalue <= 100) {
+        inputcounter.value = newvalue;
+    } else {
+        inputcounter.value = 100;
+    }
+}
+
+function dec_product() {
+    const inputcounter = document.getElementById("count-product");
+    const oldvalue = parseInt(inputcounter.value, 10);
+    let newvalue = oldvalue - 1;
+    if (newvalue >= 1) {
+        inputcounter.value = newvalue;
+    } else {
+        inputcounter.value = 1;
+    }
+
+}

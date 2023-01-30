@@ -11,17 +11,22 @@ class Controller_Product extends Controller {
 	}
 
     function action_index() {
-        if(isset($_GET["id"])) {
-            session_start();
+        session_start();
+        if(isset($_GET["id"]) && !isset($_POST["size"])) {
             
             $id = $_GET["id"];
             
             $data = $this->model->get_data($id);
 
-            //var_dump($data);
 		    $this->view->generate('product_view.php', 'template_view.php', $data);
 
-        } else {
+        } elseif (isset($_POST["add"]) && isset($_POST["size"]) && isset($_POST["count"])) {
+            $_SESSION["product_id"] = $_GET["id"];
+            $_SESSION["size"] = $_POST["size"];
+            $_SESSION["count"] = $_POST["count"];
+            //header("Location: /card");
+        } 
+        else {
             header("Location: /404");
         }
     }

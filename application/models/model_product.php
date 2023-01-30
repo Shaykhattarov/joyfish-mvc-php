@@ -30,10 +30,11 @@ class Model_Product extends Model
                     $data["product"]["attribute"][$index]["name"] = $attributes_info[$y]["name"];
                     $data["product"]["attribute"][$index]["type"] = $attributes_info[$y]["type"];
                     $type = $attributes_info[$y]["type"];
-                    if ($type == 'images') {
+                    if ($index == "images" || $index == 'sizes') {
                         $data["product"]["attribute"][$index]["value"] = explode(',', $attributes_value[$i]["value_$type"]);
+                    } else {
+                        $data["product"]["attribute"][$index]["value"] = $attributes_value[$i]["value_$type"];
                     }
-                    $data["product"]["attribute"][$index]["value"] = $attributes_value[$i]["value_$type"];
                 }
                 
             }

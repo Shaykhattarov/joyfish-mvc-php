@@ -10,7 +10,7 @@
 							<tr><th>Наименование</th><th>Цена</th><th>Количество</th><th>Итого</th></tr>
 						</thead>
 						<tbody>
-							<tr><td>Комбинезон Плавающий Akara<br> Nautilus</td><td>19 990₽</td><td>1шт.</td><td>19 990₽</td></tr>
+							<tr><td>Комбинезон Плавающий Akara<br> Nautilus</td><td>19 990₽</td><td><?=$data["count"]."шт."?></td><td>19 990₽</td></tr>
 						</tbody>
 					</table>
 					<div class="button-wrapper">
