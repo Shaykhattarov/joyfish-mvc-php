@@ -2,7 +2,7 @@
     <section class="main-section">
         <div class="container">
             <div class="main-inner">
-                <h1>Комбинезон Плавающий Akara Nautilus</h1>
+                <h1><?= $data["product"]["name"] ?></h1>
                 <div class="push70"></div>
                 <form class="main-columns">
                     <div class="gallery-wrapper">
@@ -88,24 +88,28 @@
                     </div>
                     <div class="chars-wrapper">
                         <ul>
-                            <li>Код товара:WPAN-L</li>
-                            <li>Бренд: Akara</li>
-                            <li>Пол: Мужской</li>
-                            <li>Тип: Плавающий Костюм</li>
-                            <li>Сезон: Зима</li>
-                            <li>Материал ткани: Оксфорд (100% Полиэстер)</li>
-                            <li>Температурный режим: -25°C</li>
-                            <li>Водонепроницаемость, мм: 8 000</li>
-                            <li>Цвет: Black Chartreuse</li>
-                            <li>Страна производства: Китай</li>
+                            <li>Код товара:<?= ' ' . $data["product"]["articul"]?></li>
+                            <li>Бренд:<?= ' ' . $data["product"]["attribute"]["brand"]["value"]?></li>
+                            <li>Пол: <?= ' ' . $data["product"]["attribute"]["gender"]["value"] ?></li>
+                            <li>Тип: <?= ' ' . $data["product"]["attribute"]["type"]["value"]?></li>
+                            <li>Сезон: <?= ' ' . $data["product"]["attribute"]["season"]["value"]?></li>
+                            <li>Материал ткани: <?= ' ' . $data["product"]["attribute"]["material"]["value"]?></li>
+                            <li>Температурный режим: <?= ' ' . $data["product"]["attribute"]["temperature"]["value"]?></li>
+                            <li>Водонепроницаемость, мм: <?= ' ' . $data["product"]["attribute"]["waterproof"]["value"]?></li>
+                            <li>Цвет: <?= ' ' . $data["product"]["attribute"]["color"]["value"]?></li>
+                            <li>Страна производства: <?= ' ' . $data["product"]["attribute"]["country"]["value"]?></li>
                         </ul>
                     </div>
                     <div class="price-wrapper">
                         <div class="text">
-                            В наличии
+                            <? if ($data["product"]["in_stock"] == '1') { ?>
+                                <?= "В наличии" ?>
+                            <? } else { ?>
+                                <?= "Нет в наличии" ?>
+                            <? } ?>
                         </div>
                         <div class="price">
-                            11 900₽
+                            <?= $data["product"]["price"] . '₽' ?>
                         </div>
                         <div class="add-product">
                             <div class="element-counter">
@@ -145,7 +149,7 @@
                     <input name="mail" value="" type="email" class="form-control required" required placeholder="Ваша  почта *">
                 </div>
                 <div class="form-group">
-                    <input name="дink" value="" type="text" class="form-control required" required placeholder="Ссылка на товар *">
+                    <input name="link" value="" type="text" class="form-control required" required placeholder="Ссылка на товар *">
                 </div>
                 <div class="subtitle">*-поля обязательные для заполнения</div>
                 <div class="push20"></div>
@@ -154,6 +158,5 @@
                 </div>
             </form>
         </div>
-    </div>
 
 </body>

@@ -3,6 +3,7 @@
 class Controller_Login extends Controller
 { 	
 	public $model;
+	
 	function __construct()
 	{
 		$this->model = new Model_Login();

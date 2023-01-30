@@ -11,7 +11,6 @@ class Model_Login extends Model {
         $usertype = $_POST["typeuser"];
         $password = md5($_POST["password"]);
 
-        
         $con = $this->database_connection();
         try {
             $sql = "SELECT * FROM user WHERE `name`='$name' AND `login`='$login' AND `password`='$password' AND `role`='$usertype' ;";
