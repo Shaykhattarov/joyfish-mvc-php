@@ -17,7 +17,7 @@ class Model_Registration extends Model
         
         if(mysqli_num_rows($result) == 0){
             try {
-                $sql = "INSERT INTO user(name, login, password, role) VALUES ('$name', '$login', '$password', 'Пользователь') ;";
+                $sql = "INSERT INTO user(name, login, password, role) VALUES ('$name', '$login', '$password', 'user') ;";
                 $result = mysqli_query($con, $sql);
             } catch (mysqli_sql_exception $err) {
                 error_log($err, 0);

@@ -2,26 +2,28 @@
 
 class Controller_Admin extends Controller
 {
-	/*
+	public $model;
+
+	function __construct() {
+		$this -> model = new Model_Admin();
+		$this -> view = new View();
+	}
+
 	function action_index()
 	{
 		session_start();
-		
-		
-		Для простоты, в нашем случае, проверяется равенство сессионной переменной admin прописанному
-		в коде значению — паролю. Такое решение не правильно с точки зрения безопасности.
-		Пароль должен храниться в базе данных в захешированном виде, но пока оставим как есть.
-		
-		if ( $_SESSION['admin'] == "12345" )
-		{
-			$this->view->generate('admin_view.php', 'template_view.php');
-		}
-		else
-		{
-			session_destroy();
-			Route::ErrorPage404();
-		}
 
+		if($_SESSION['role'] == 'admin' && $this->model->check_admin()) {
+			$orders = $this->model->get_orders();
+			$lowprice = $this->model->get_lowprice_msg();
+			$data['orders'] = $orders;
+			$data['lowprice'] = $lowprice;
+
+			$this -> view -> generate('admin_view.php', 'template_view.php', $data);
+		}
+		else {
+			header("Location: /404");
+		}
 	}
 	
 	// Действие для разлогинивания администратора
@@ -29,12 +31,6 @@ class Controller_Admin extends Controller
 	{
 		session_start();
 		session_destroy();
-		header('Location:/');
-	}
-	*/
-	function action_index()
-	{
-		session_start();
-		$this->view->generate('admin_view.php', 'template_view.php');
+		header('Location:/logout');
 	}
 }

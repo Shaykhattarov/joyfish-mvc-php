@@ -4,7 +4,7 @@
             <div class="main-inner">
                 <h1><?= $data["product"]["name"] ?></h1>
                 <div class="push70"></div>
-                <form class="main-columns" method="POST">
+                <form class="main-columns" method="GET">
                     <div class="gallery-wrapper">
                         <div class="page-slider-wrapper relative">
                             <div class="page-slider">
@@ -142,5 +142,4 @@
                 </div>
             </form>
         </div>
-
 </body>

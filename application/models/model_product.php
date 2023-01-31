@@ -45,9 +45,14 @@ class Model_Product extends Model
         $data["product"]["price"] = number_format($product_info["price"], 0, ',', ' ');
         $data["product"]["in_stock"] = $product_info["in_stock"];
 
-        
-
         return $data;
+    }
+
+    function save_lowprice_msg($fio, $mail, $link) {
+        $con = $this-> database_connection();
+        $sql = "INSERT INTO `lowprice_contacts` (fio, email, link) VALUES ('$fio','$mail','$link');";
+        $res = $this->database_query($con, $sql);
+        return $res;
     }
 
     private function get_product_info($id)

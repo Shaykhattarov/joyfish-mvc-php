@@ -1,7 +1,7 @@
 ﻿<?php
 
-Error_Reporting(E_ALL & ~E_NOTICE); //не выводить предупреждения
-ini_set('display_errors', 1);
+//Error_Reporting(E_ALL & ~E_NOTICE); //не выводить предупреждения
+ini_set('display_errors', 0);
 
 error_reporting(E_ALL);
 ini_set('error_log', __DIR__ . '/logs/php-errors.log');

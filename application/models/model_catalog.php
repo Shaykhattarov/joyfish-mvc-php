@@ -22,6 +22,7 @@ class Model_Catalog extends Model {
                 $row["price"] = number_format($row['price'], 0, ',', ' ');
                 $row["brand"] = $row['value_text'];
                 unset($row["value_text"]);
+                
                 array_push($this->data, $row);
             }
             return $this->data;
