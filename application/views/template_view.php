@@ -61,7 +61,7 @@
 							</defs>
 						</svg>
 						</a>
-						<a href="/card" class="header-feed button">
+						<a href="/cart" class="header-feed button">
 							Корзина
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g clip-path="url(#clip0_4_27)">

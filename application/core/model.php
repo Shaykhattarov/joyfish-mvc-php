@@ -15,9 +15,16 @@ class Model
 	
 
 	// метод выборки данных
-	public function database_query()
+	public function database_query($connection, $sql)
 	{
-		//todo
+		$result = null;
+		try {
+			$result = mysqli_query($connection, $sql);
+		} catch (mysqli_sql_exception $err) {
+			error_log($err, 0);
+		}
+
+		return $result;
 	}
 
 	function database_connection() {

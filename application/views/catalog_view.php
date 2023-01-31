@@ -29,7 +29,7 @@
 								<div class="filter-wrap" id="checkbox-filter">
 									<? foreach ($data["brand"] as $row) { ?>
 										<div class="form-group" >
-											<input type="checkbox" class="custom-checkbox" id=<?= $row["value_text"] ?> data-filter=<?= $row["value_text"] ?> value=<?= $row["value_text"] ?>>
+											<input type="checkbox" class="custom-checkbox" id=<?= $row["value_text"] ?> checked="yes" data-filter=<?= $row["value_text"] ?> value=<?= $row["value_text"] ?>>
 											<label for=<?= $row["value_text"] ?>><?= $row["value_text"] ?></label>
 										</div>
 									<? } ?>
@@ -48,8 +48,9 @@
 						</div>
 						<div class="catalog-column">
 							<? foreach ($data["catalog"] as $row) { ?>
-								<div class="item" data-category=<?= $row["brand"]?> style="display: none;">
-									<a href="/product" class="absolute"></a>
+								<div class="item" data-category=<?= $row["brand"]?> >
+									<? $id = $row["id"]; ?>
+									<?="<a href='"."/product?id=$id'" . " class='absolute'></a>"?>
 									<div class="variants">
 										5 вариантов
 									</div>
@@ -65,7 +66,7 @@
 											<? } ?>
 										</div>
 										<div class="item-price">
-											<?= $row["price"] . "₽" ?>
+											<?=$row["price"]."₽"?>
 										</div>
 										<div class="item-title">
 											<?= $row["name"] ?>

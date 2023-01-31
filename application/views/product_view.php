@@ -2,120 +2,108 @@
     <section class="main-section">
         <div class="container">
             <div class="main-inner">
-                <h1>Комбинезон Плавающий Akara Nautilus</h1>
+                <h1><?= $data["product"]["name"] ?></h1>
                 <div class="push70"></div>
-                <form class="main-columns">
+                <form class="main-columns" method="GET">
                     <div class="gallery-wrapper">
                         <div class="page-slider-wrapper relative">
                             <div class="page-slider">
-                                <div class="item">
-                                    <a class="fancybox" href="images/g1.png" data-fancybox="portfolio">
-                                        <img src="images/g1.png" alt="мзображение 1">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a class="fancybox" href="images/g2.png" data-fancybox="portfolio">
-                                        <img src="images/g2.png" alt="мзображение 2">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a class="fancybox" href="images/g3.png" data-fancybox="portfolio">
-                                        <img src="images/g3.png" alt="мзображение 3">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a class="fancybox" href="images/g5.png" data-fancybox="portfolio">
-                                        <img src="images/g5.png" alt="мзображение 4">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a class="fancybox" href="images/g1.png" data-fancybox="portfolio">
-                                        <img src="images/g1.png" alt="мзображение 1">
-                                    </a>
-                                </div>
+                                <? foreach ($data["product"]["attribute"]["images"]["value"] as $key => $image) { ?>
+                                    <div class="item">
+                                        <a class="fancybox" href=<?= "images/" . $image ?> data-fancybox="portfolio">
+                                            <img src=<?= "images/" . $image ?> alt=<?= "изображение $key" ?>>
+                                        </a>
+                                    </div>
+                                <? } ?>
                             </div>
                         </div>
                         <div class="page-thumbs-slider-wrapper">
                             <div class="push4"></div>
                             <div class="page-thumbs-slider">
-                                <div class="item">
-                                    <img src="images/g1.png" alt="мзображение 1">
-                                </div>
-                                <div class="item">
-                                    <img src="images/g2.png" alt="мзображение 2">
-                                </div>
-                                <div class="item">
-                                    <img src="images/g3.png" alt="мзображение 3">
-                                </div>
-                                <div class="item">
-                                    <img src="images/g5.png" alt="мзображение 4">
-                                </div>
-                                <div class="item">
-                                    <img src="images/g1.png" alt="мзображение 5">
-                                </div>
-
+                                <? foreach ($data["product"]["attribute"]["images"]["value"] as $key => $image) { ?>
+                                    <div class="item">
+                                        <? $key++ ?>
+                                        <img src=<?= "images/" . $image ?> alt=<?= "изображение $key" ?>>
+                                    </div>
+                                <? } ?>
                             </div>
                         </div>
                         <div class="sizes-wrapper">
+                            <? if(!isset($data["product"]["attribute"]["sizes"]["value"]) || count($data["product"]["attribute"]["sizes"]["value"]) != 0) {?>
                             <div class="sizes-title">
                                 Размеры
                             </div>
                             <div class="sizes-buttons">
                                 <div class="form_radio_group">
-                                    <div class="form_radio_group-item">
-                                        <input id="medium" type="radio" name="size" value="medium" checked>
-                                        <label for="medium">Medium</label>
-                                    </div>
-                                    <div class="form_radio_group-item">
-                                        <input id="large" type="radio" name="size" value=large">
-                                        <label for="large">Large</label>
-                                    </div>
-                                    <div class="form_radio_group-item">
-                                        <input id="xlarge" type="radio" name="size" value="xlarge">
-                                        <label for="xlarge">X-Large</label>
-                                    </div>
-                                    <div class="form_radio_group-item">
-                                        <input id="xxlarge" type="radio" name="size" value="xxlarge">
-                                        <label for="xxlarge">XX-Large</label>
-                                    </div>
-                                    <div class="form_radio_group-item">
-                                        <input id="xxxlarge" type="radio" name="size" value="xxxlarge">
-                                        <label for="xxxlarge">XXX-Large</label>
-                                    </div>
+                                    <? if (in_array("Medium", $data["product"]["attribute"]["sizes"]["value"])) { ?>
+                                        <div class="form_radio_group-item">
+                                            <input id="medium" type="radio" name="size" value="medium" checked>
+                                            <label for="medium">Medium</label>
+                                        </div>
+                                    <? } ?>
+                                    <? if (in_array("Large", $data["product"]["attribute"]["sizes"]["value"])) { ?>
+                                        <div class="form_radio_group-item">
+                                            <input id="large" type="radio" name="size" value="large">
+                                            <label for="large">Large</label>
+                                        </div>
+                                    <? } ?>
+                                    <? if (in_array("X-Large", $data["product"]["attribute"]["sizes"]["value"])) { ?>
+                                        <div class="form_radio_group-item">
+                                            <input id="xlarge" type="radio" name="size" value="xlarge">
+                                            <label for="xlarge">X-Large</label>
+                                        </div>
+                                    <? } ?>
+                                    <? if (in_array("XX-Large", $data["product"]["attribute"]["sizes"]["value"])) { ?>
+                                        <div class="form_radio_group-item">
+                                            <input id="xxlarge" type="radio" name="size" value="xxlarge">
+                                            <label for="xxlarge">XX-Large</label>
+                                        </div>
+                                    <? } ?>
+                                    <? if (in_array("XXX-Large", $data["product"]["attribute"]["sizes"]["value"])) { ?>
+                                        <div class="form_radio_group-item">
+                                            <input id="xxxlarge" type="radio" name="size" value="xxxlarge">
+                                            <label for="xxxlarge">XXX-Large</label>
+                                        </div>
+                                    <? } ?>
                                 </div>
                             </div>
+                            <? } ?>
                         </div>
                     </div>
                     <div class="chars-wrapper">
                         <ul>
-                            <li>Код товара:WPAN-L</li>
-                            <li>Бренд: Akara</li>
-                            <li>Пол: Мужской</li>
-                            <li>Тип: Плавающий Костюм</li>
-                            <li>Сезон: Зима</li>
-                            <li>Материал ткани: Оксфорд (100% Полиэстер)</li>
-                            <li>Температурный режим: -25°C</li>
-                            <li>Водонепроницаемость, мм: 8 000</li>
-                            <li>Цвет: Black Chartreuse</li>
-                            <li>Страна производства: Китай</li>
+                            <li>Код товара:<?= ' ' . $data["product"]["articul"] ?></li>
+                            <li>Бренд:<?= ' ' . $data["product"]["attribute"]["brand"]["value"] ?></li>
+                            <li>Пол: <?= ' ' . $data["product"]["attribute"]["gender"]["value"] ?></li>
+                            <li>Тип: <?= ' ' . $data["product"]["attribute"]["type"]["value"] ?></li>
+                            <li>Сезон: <?= ' ' . $data["product"]["attribute"]["season"]["value"] ?></li>
+                            <li>Материал ткани: <?= ' ' . $data["product"]["attribute"]["material"]["value"] ?></li>
+                            <li>Температурный режим: <?= ' ' . $data["product"]["attribute"]["temperature"]["value"] ?></li>
+                            <li>Водонепроницаемость, мм: <?= ' ' . $data["product"]["attribute"]["waterproof"]["value"] ?></li>
+                            <li>Цвет: <?= ' ' . $data["product"]["attribute"]["color"]["value"] ?></li>
+                            <li>Страна производства: <?= ' ' . $data["product"]["attribute"]["country"]["value"] ?></li>
                         </ul>
                     </div>
                     <div class="price-wrapper">
                         <div class="text">
-                            В наличии
+                            <? if ($data["product"]["in_stock"] == '1') { ?>
+                                <?= "В наличии" ?>
+                            <? } else { ?>
+                                <?= "Нет в наличии" ?>
+                            <? } ?>
                         </div>
                         <div class="price">
-                            11 900₽
+                            <?= $data["product"]["price"] . '₽' ?>
                         </div>
                         <div class="add-product">
                             <div class="element-counter">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn-minus" disabled="disabled" data-type="minus"></button>
+                                        <button type="button" class="btn-minus" onclick="dec_product()" data-type="minus"></button>
                                     </span>
-                                    <input type="text" name="count" id="count-717" class="form-control input-number" value="1" min="1" max="100">
+                                    <input type="text" name="count" id="count-product" class="form-control input-number" value="1" min="1" max="100">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn-plus" data-type="plus"></button>
+                                        <button type="button" class="btn-plus" id="btn-plus" onclick="add_product()" data-type="plus"></button>
                                     </span>
                                 </div>
                             </div>
@@ -145,7 +133,7 @@
                     <input name="mail" value="" type="email" class="form-control required" required placeholder="Ваша  почта *">
                 </div>
                 <div class="form-group">
-                    <input name="дink" value="" type="text" class="form-control required" required placeholder="Ссылка на товар *">
+                    <input name="link" value="" type="text" class="form-control required" required placeholder="Ссылка на товар *">
                 </div>
                 <div class="subtitle">*-поля обязательные для заполнения</div>
                 <div class="push20"></div>
@@ -154,6 +142,4 @@
                 </div>
             </form>
         </div>
-    </div>
-
 </body>

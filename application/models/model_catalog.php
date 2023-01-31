@@ -8,7 +8,7 @@ class Model_Catalog extends Model {
     public function get_catalog_data() {
         $con = $this->database_connection();
         
-        $sql = "SELECT `name`, `price`, `articul`, `in_stock`, catalog_prodattributevalue.`value_text` FROM catalog_product LEFT OUTER JOIN catalog_prodattributevalue 
+        $sql = "SELECT catalog_product.`id`, `name`, `price`, `articul`, `in_stock`, catalog_prodattributevalue.`value_text` FROM catalog_product LEFT OUTER JOIN catalog_prodattributevalue 
         ON catalog_product.id = catalog_prodattributevalue.product_id WHERE catalog_prodattributevalue.attribute_id = 1;";
 
         try {
@@ -19,10 +19,10 @@ class Model_Catalog extends Model {
         
         if (isset($this->result) && mysqli_num_rows($this->result) > 0) {
             foreach($this -> result as $row) {
-                unset($row["id"]);
                 $row["price"] = number_format($row['price'], 0, ',', ' ');
                 $row["brand"] = $row['value_text'];
                 unset($row["value_text"]);
+                
                 array_push($this->data, $row);
             }
             return $this->data;
