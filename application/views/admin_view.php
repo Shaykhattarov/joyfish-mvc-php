@@ -84,10 +84,9 @@
 							</thead>
 							<? foreach($data['lowprice'] as $row){?>
 							<tbody>
-								
 								<tr>
-									<td><?=$row['fio']?></td>
-									<td><?=$row['mail']?></td>
+									<td><?=$row['name']?></td>
+									<td><?=$row['email']?></td>
 									<td><a href=<?=$row['link']?>><?=$row['link']?></a></td>
 							</tbody>
 							<? } ?>  

@@ -12,6 +12,7 @@ class Controller_Product extends Controller {
 
     function action_index() {
         session_start();
+        
         if(isset($_GET["id"]) && !isset($_POST["size"])) {
         
             $id = $_GET["id"];
@@ -26,9 +27,7 @@ class Controller_Product extends Controller {
             $_SESSION['cart']["id"] = $_SESSION['product_id'];
             $_SESSION['cart']["size"] = $_GET['size'];
             $_SESSION['cart']["count"] = $_GET['count'];
-            //var_dump( $_SESSION);
             unset($_SESSION['product_id']);
-            //unset($_SESSION['cart']);
             header("Location: /cart");
         } 
         else {
@@ -37,8 +36,6 @@ class Controller_Product extends Controller {
 
         if(isset($_POST['fio']) && isset($_POST['mail']) && isset($_POST['link'])){
             $this -> model -> save_lowprice_msg($_POST['fio'], $_POST['mail'], $_POST['link']);
-            $id = $_GET['id'];
-            //
         }
     }
 }

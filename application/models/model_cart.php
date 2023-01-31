@@ -8,11 +8,12 @@ class Model_Cart extends Model
         if (isset($_SESSION['cart']) && !isset($_COOKIE['cart'])) {
             $cart_content = serialize($_SESSION['cart']);
             setcookie('cart', $cart_content, time() + 3600 * 24, '/');
+            header("Location: /cart");
         }
         if (isset($_COOKIE['cart']) && isset($_SESSION['cart'])) {
 
             $newcookie = [];
-            $oldcookie = unserialize($_COOKIE['cart']);
+            $oldcookie = isset($_COOKIE['cart']) ? unserialize($_COOKIE['cart']): null;
             $session = $_SESSION['cart'];
 
             if (isset($oldcookie["id"])) {
@@ -24,19 +25,28 @@ class Model_Cart extends Model
                     array_push($newcookie, $oldcookie);
                 }
             } else {
-                foreach ($oldcookie as $row) {
+                $general_id_index = 0;
+                $general_id = (-100);
+                foreach ($oldcookie as $count => $row) {
                     $id = $row['id'];
-                    if ($session['id'] != $id) {
-                        array_push($newcookie, $row);
-                    } else {
-                        $row['count'] = (string)((int)$row['count'] + (int)$session['count']);
-                        array_push($newcookie, $row);
+                    if ($session['id'] == $id) {
+                        $general_id = (int)$id;
+                        $general_id_index = $count;
                     }
                 }
+                if($general_id < 0){
+                    $newcookie = unserialize($_COOKIE['cart']);
+                    array_push($newcookie, $session);
+                } else {
+                    $newcookie = unserialize($_COOKIE['cart']);
+                    $newcookie[$general_id_index]['count'] = (int)$newcookie[$general_id_index]['count'] + (int)$session['count'];
+                    $general_id_index = (-100);
+                }
             }
-
             $cart_content = serialize($newcookie);
             setcookie('cart', $cart_content, time() + 3600 * 24, '/');
+            $_COOKIE['cart'] = serialize($newcookie);
+            header('Location: /cart');
         }
     }
 
@@ -44,9 +54,10 @@ class Model_Cart extends Model
     {
         $con = $this->database_connection();
         $data = [];
-        if (isset($_COOKIE['cart']) || isset($_SESSION['cart'])) {
+        $serizalized_cookie = isset($_COOKIE['cart']) ? $_COOKIE['cart'] : null;
+        
+        if (isset($serizalized_cookie)) {
             $cookie = unserialize($_COOKIE['cart']);
-            //var_dump($cookie);
             if (!isset($cookie['id'])) {
                 foreach ($cookie as $row) {
                     $id = $row['id'];

@@ -43,12 +43,17 @@ class Model_Admin extends Model
     function get_lowprice_msg()
     {
         $con = $this->database_connection();
-        $sql = "SELECT * FROM lowprice_contacts;";
+        $sql = "SELECT * FROM `lowprice_contacts` ;";
         $res = $this->database_query($con, $sql);
 
         if (isset($res)) {
-            $rows = $res->fetch_array(MYSQLI_ASSOC);
-            return $rows;
+            $data = [];
+            foreach($res as $count => $row){
+                $data[$count]['name'] = ucfirst(explode(' ', $row['fio'])[1]);
+                $data[$count]['email'] = $row['email'];
+                $data[$count]['link'] = $row['link'];
+            }
+            return $data;
         }
         return false;
     }

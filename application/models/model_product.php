@@ -48,9 +48,9 @@ class Model_Product extends Model
         return $data;
     }
 
-    function save_lowprice_msg($fio, $mail, $link) {
+    public function save_lowprice_msg($fio, $mail, $link) {
         $con = $this-> database_connection();
-        $sql = "INSERT INTO `lowprice_contacts` (fio, email, link) VALUES ('$fio','$mail','$link');";
+        $sql = "INSERT INTO lowprice_contacts(fio, mail, link) VALUES ('$fio', '$mail', '$link') ;";
         $res = $this->database_query($con, $sql);
         return $res;
     }
@@ -89,7 +89,7 @@ class Model_Product extends Model
         }
     }
 
-    private function get_attribute_info($id)
+    private function get_attribute_info()
     {
         $data = [];
         $sql = "SELECT * FROM catalog_productattribute;";
